@@ -116,7 +116,7 @@ export default function LandingPage() {
               alt="Pantrẽ app preview"
               width={260}
               height={520}
-              className="h-[420px] w-[220px] object-cover sm:h-[520px] sm:w-[260px]"
+              className="h-auto w-[220px] sm:w-[260px]"
               priority
             />
           </div>
