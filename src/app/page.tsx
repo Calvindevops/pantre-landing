@@ -1,39 +1,40 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import { WaitlistForm } from "./waitlist-form";
 
 const FEATURES = [
   {
-    icon: "📸",
+    image: "/images/hero-fridge.png",
     title: "Scan Your Fridge",
     description:
       "Point your camera at your fridge, receipt, or grocery bag. AI identifies every ingredient instantly.",
   },
   {
-    icon: "🧠",
+    image: "/images/feature-recipes.png",
     title: "AI Recipe Generation",
     description:
       "Get personalized recipes based on what you actually have. No more missing ingredients.",
   },
   {
-    icon: "👨‍🍳",
+    image: "/images/feature-assistant.png",
     title: "Live Cooking Assistant",
     description:
       "Step-by-step guidance, real-time substitutions, and voice-powered help while you cook.",
   },
   {
-    icon: "📅",
+    image: "/images/feature-mealplan.png",
     title: "Smart Meal Planning",
     description:
       "Weekly plans that minimize waste and maximize flavor. Auto-generated grocery lists.",
   },
   {
-    icon: "🔥",
+    image: "/images/feature-creator.png",
     title: "Cook Like a Creator",
     description:
       "Follow food creators and generate recipes in their signature style.",
   },
   {
-    icon: "📊",
+    image: "/images/feature-nutrition.png",
     title: "Nutrition Tracking",
     description:
       "Snap a photo of your plate. AI estimates calories, macros, and micronutrients.",
@@ -105,22 +106,19 @@ export default function LandingPage() {
             </Suspense>
           </div>
 
-          {/* Phone mockup placeholder */}
+          {/* Phone mockup */}
           <div
-            className="animate-fade-in-up animate-float mt-16 flex h-[420px] w-[220px] items-center justify-center rounded-[32px] border-2 border-g-150 bg-white shadow-lg sm:h-[520px] sm:w-[260px]"
+            className="animate-fade-in-up animate-float mt-16 overflow-hidden rounded-[32px] border-2 border-g-150 bg-white shadow-lg"
             style={{ animationDelay: "0.5s", opacity: 0 }}
           >
-            <div className="flex flex-col items-center gap-3 px-6 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-light">
-                <span className="text-3xl">🥘</span>
-              </div>
-              <p className="font-display text-lg italic text-g-800">
-                Your kitchen,
-                <br />
-                reimagined
-              </p>
-              <p className="text-xs text-g-400">App preview coming soon</p>
-            </div>
+            <Image
+              src="/images/hero-phone.png"
+              alt="Pantrẽ app preview"
+              width={260}
+              height={520}
+              className="h-[420px] w-[220px] object-cover sm:h-[520px] sm:w-[260px]"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -141,15 +139,25 @@ export default function LandingPage() {
             {FEATURES.map((feature) => (
               <div
                 key={feature.title}
-                className="group rounded-[16px] border border-g-150 bg-white p-6 transition-all hover:border-brand-medium hover:shadow-lg"
+                className="group overflow-hidden rounded-[16px] border border-g-150 bg-white transition-all hover:border-brand-medium hover:shadow-lg"
               >
-                <span className="text-3xl">{feature.icon}</span>
-                <h3 className="mt-4 text-lg font-bold text-g-800">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-g-500">
-                  {feature.description}
-                </p>
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-g-800">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-g-500">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
