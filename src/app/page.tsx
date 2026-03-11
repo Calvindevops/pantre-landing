@@ -2,6 +2,12 @@ import { Suspense } from "react";
 import Image from "next/image";
 import { WaitlistForm } from "./waitlist-form";
 import { AnimatedLogo } from "./animated-logo";
+import { DemoShowcaseLoader } from "./demo-showcase-loader";
+import {
+  RevealSection,
+  StaggerGrid,
+  StaggerItem,
+} from "./scroll-sections";
 
 const FEATURES = [
   {
@@ -105,19 +111,12 @@ export default function LandingPage() {
             </Suspense>
           </div>
 
-          {/* Phone mockup */}
+          {/* App demo showcase */}
           <div
-            className="animate-fade-in-up animate-float mt-16 overflow-hidden rounded-[32px] border-2 border-g-150 bg-white shadow-lg"
+            className="animate-fade-in-up mt-16 w-full"
             style={{ animationDelay: "0.5s", opacity: 0 }}
           >
-            <Image
-              src="/images/hero-phone.png"
-              alt="Pantrẽ app preview"
-              width={260}
-              height={520}
-              className="h-auto w-[220px] sm:w-[260px]"
-              priority
-            />
+            <DemoShowcaseLoader />
           </div>
         </div>
       </section>
@@ -125,18 +124,18 @@ export default function LandingPage() {
       {/* Features */}
       <section className="relative px-6 py-24">
         <div className="mx-auto max-w-5xl">
-          <div className="mb-16 text-center">
+          <RevealSection className="mb-16 text-center">
             <h2 className="font-display text-4xl italic text-g-800 sm:text-5xl">
               Everything your kitchen needs
             </h2>
             <p className="mt-4 text-lg text-g-500">
               Powered by AI that understands food, not just data.
             </p>
-          </div>
+          </RevealSection>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGrid className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((feature) => (
-              <div
+              <StaggerItem
                 key={feature.title}
                 className="group overflow-hidden rounded-[16px] border border-g-150 bg-white transition-all hover:border-brand-medium hover:shadow-lg"
               >
@@ -157,18 +156,20 @@ export default function LandingPage() {
                     {feature.description}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* How it works */}
       <section className="bg-white px-6 py-24">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-display text-4xl italic text-g-800 sm:text-5xl">
-            Three steps to dinner
-          </h2>
+          <RevealSection className="text-center">
+            <h2 className="font-display text-4xl italic text-g-800 sm:text-5xl">
+              Three steps to dinner
+            </h2>
+          </RevealSection>
 
           <div className="mt-16 flex flex-col gap-12 sm:gap-16">
             {[
@@ -187,8 +188,12 @@ export default function LandingPage() {
                 title: "Cook with confidence",
                 desc: "Step-by-step guidance with real-time substitutions, timers, and tips. Like having a chef in your kitchen.",
               },
-            ].map((item) => (
-              <div key={item.step} className="flex gap-6 sm:gap-10">
+            ].map((item, i) => (
+              <RevealSection
+                key={item.step}
+                delay={i * 0.15}
+                className="flex gap-6 sm:gap-10"
+              >
                 <span className="font-display text-5xl italic text-brand-medium sm:text-6xl">
                   {item.step}
                 </span>
@@ -196,7 +201,7 @@ export default function LandingPage() {
                   <h3 className="text-xl font-bold text-g-800">{item.title}</h3>
                   <p className="mt-2 max-w-md text-g-500">{item.desc}</p>
                 </div>
-              </div>
+              </RevealSection>
             ))}
           </div>
         </div>
@@ -205,7 +210,7 @@ export default function LandingPage() {
       {/* CTA */}
       <section className="relative overflow-hidden px-6 py-24">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-warm via-brand-light/20 to-warm" />
-        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
+        <RevealSection className="relative z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
           <h2 className="font-display text-4xl italic text-g-800 sm:text-5xl">
             Ready to cook smarter?
           </h2>
@@ -218,7 +223,7 @@ export default function LandingPage() {
               <WaitlistForm minimal />
             </Suspense>
           </div>
-        </div>
+        </RevealSection>
       </section>
 
       {/* Footer */}
