@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { WaitlistForm } from "./waitlist-form";
+import { AnimatedLogo } from "./animated-logo";
 
 const FEATURES = [
   {
@@ -47,9 +48,7 @@ export default function LandingPage() {
       {/* Nav */}
       <nav className="fixed top-0 z-50 w-full border-b border-g-150/50 bg-warm/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <span className="font-display text-2xl italic text-g-800">
-            Pantrẽ
-          </span>
+          <AnimatedLogo className="h-8 w-auto" />
           <a
             href="#waitlist"
             className="rounded-[14px] bg-black px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-g-800 active:scale-[0.98]"
