@@ -19,11 +19,19 @@ export const metadata: Metadata = {
   title: "Pantrẽ — Cook like someone you love",
   description:
     "AI-powered cooking that knows your fridge, your taste, and your skill level. Join the beta waitlist.",
+  metadataBase: new URL("https://pantre.app"),
   openGraph: {
     title: "Pantrẽ — Cook like someone you love",
     description:
       "AI-powered cooking that knows your fridge, your taste, and your skill level. Join the beta waitlist.",
     type: "website",
+    siteName: "Pantrẽ",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pantrẽ — Cook like someone you love",
+    description:
+      "AI-powered cooking that knows your fridge, your taste, and your skill level.",
   },
 };
 

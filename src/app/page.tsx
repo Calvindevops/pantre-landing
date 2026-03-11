@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { WaitlistForm } from "./waitlist-form";
 
 const FEATURES = [
@@ -99,10 +100,9 @@ export default function LandingPage() {
             className="animate-fade-in-up mt-10 w-full max-w-md"
             style={{ animationDelay: "0.3s", opacity: 0 }}
           >
-            <WaitlistForm />
-            <p className="mt-3 text-xs text-g-400">
-              Free to join. No spam, ever. Early access for first 500 signups.
-            </p>
+            <Suspense fallback={<div className="h-14" />}>
+              <WaitlistForm />
+            </Suspense>
           </div>
 
           {/* Phone mockup placeholder */}
@@ -138,7 +138,7 @@ export default function LandingPage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((feature, i) => (
+            {FEATURES.map((feature) => (
               <div
                 key={feature.title}
                 className="group rounded-[16px] border border-g-150 bg-white p-6 transition-all hover:border-brand-medium hover:shadow-lg"
@@ -207,7 +207,9 @@ export default function LandingPage() {
             free for 3 months.
           </p>
           <div className="mt-8 w-full max-w-md">
-            <WaitlistForm />
+            <Suspense fallback={<div className="h-14" />}>
+              <WaitlistForm minimal />
+            </Suspense>
           </div>
         </div>
       </section>
