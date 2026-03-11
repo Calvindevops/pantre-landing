@@ -219,8 +219,7 @@ export default function LandingPage() {
             Pantrẽ
           </span>
           <p className="text-sm text-g-400">
-            &copy; {new Date().getFullYear()} TailorMade AI. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Pantrẽ. All rights reserved.
           </p>
         </div>
       </footer>
